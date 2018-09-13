@@ -2,7 +2,8 @@
 import pygame
 
 
-class Character():
+
+class Character(pygame.sprite.Sprite):
     def __init__(self):
         self.position = [50,600]
         self.direction = 'STAND'
@@ -10,9 +11,12 @@ class Character():
         self.dead = False
         self.width = 10
         self.height = 10
+        
     
         
     def changeDirection(self, direction):
+        
+    
         if direction == 'RIGHT':
             self.direction = 'RIGHT'
             self.position[0] += .5
@@ -23,7 +27,7 @@ class Character():
             
         elif direction == 'UP':
             self.direction = 'UP'
-            self.position[1] -= .5
+            self.position[1] -= 30
             
         elif direction == 'CROUCH':
             self.direction = 'CROUCH'
@@ -52,6 +56,8 @@ class Character():
     def getDead(self):
         return self.dead
     
+    
+    
     def setPosition(self, position):
         self.position = position
     
@@ -75,7 +81,7 @@ class Character():
         
     
             
-class Obstacle():
+class Obstacle(pygame.sprite.Sprite):
     def __init__(self, width, height, x_position, y_position):
         self.x_position = x_position
         self.y_position = y_position
@@ -119,6 +125,9 @@ class Obstacle():
     
     def get_rect(self):
         return pygame.Rect(self.x_position, self.y_position, self.width, self.height)
+    
+    def draw(self, window):
+         return pygame.draw.rect(window, pygame.Color(0,225,0), pygame.Rect(self.getPositionX(), self.getPositionY(), self.getWidth(), self.getHeight()))
     
         
         
